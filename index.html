@@ -192,6 +192,19 @@
       box-shadow: 0 0 20px #9944ff66;
     }
 
+    /* ── TAGLINE ── */
+    .tagline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 300;
+      font-size: clamp(12px, 2.2vw, 17px);
+      letter-spacing: clamp(3px, 1.5vw, 7px);
+      color: var(--silver-dim);
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 32px;
+      opacity: 0.75;
+    }
+
     /* ── LOCATION ── */
     .location {
       font-family: 'Orbitron', sans-serif;
@@ -283,13 +296,15 @@
   <div class="motorsports">Motorsports</div>
   <div class="coming-soon">Coming Soon</div>
 
+  <div class="tagline">An up-and-coming Sport Modified dirt track race team</div>
+
   <div class="email-form">
     <input class="email-input" type="email" id="emailInput" placeholder="Enter your email for launch updates">
     <button class="notify-btn" onclick="handleNotify()">Notify Me</button>
   </div>
   <div class="success-msg" id="successMsg">You're on the list. We'll be in touch. ◆</div>
 
-  <div class="location">Loveland, Ohio</div>
+  <div class="location">Southwest Ohio</div>
 
   <a class="garage-link" href="forsale.html">Garage Sale &nbsp;→</a>
 </div>
