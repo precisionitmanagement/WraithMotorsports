@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wraith Motorsports — Coming Soon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Barlow+Condensed:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --void: #000000;
+      --deep: #0a0010;
+      --purple: #9944ff;
+      --purple-dim: #6622cc;
+      --shadow: #4400aa;
+      --silver: #c0c0c0;
+      --silver-dim: #888888;
+      --white: #ffffff;
+    }
+
+    html, body {
+      width: 100%; height: 100%;
+      background: var(--void);
+      color: var(--white);
+      font-family: 'Orbitron', sans-serif;
+      overflow: hidden;
+    }
+
+    /* ── CANVAS BACKGROUND ── */
+    #bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+    }
+
+    /* ── RADIAL GLOW LAYERS ── */
+    .glow-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 60%, #9944ff0d 0%, transparent 65%),
+        radial-gradient(ellipse 40% 30% at 30% 70%, #6622cc08 0%, transparent 55%),
+        radial-gradient(ellipse 40% 30% at 70% 70%, #4400aa08 0%, transparent 55%);
+      animation: glowPulse 6s ease-in-out infinite;
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; }
+    }
+
+    /* ── MAIN LAYOUT ── */
+    .page {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      gap: 0;
+    }
+
+    /* ── WORDMARK ── */
+    .wordmark {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: clamp(72px, 16vw, 180px);
+      letter-spacing: 8px;
+      line-height: 1;
+      background: linear-gradient(180deg,
+        #ffffff 0%,
+        #e8d8ff 10%,
+        #c8a8ff 25%,
+        #9944ff 50%,
+        #6622cc 75%,
+        #4400aa 100%
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 0 40px #9944ff44) drop-shadow(0 0 80px #9944ff22);
+      animation: wordmarkGlow 5s ease-in-out infinite;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    @keyframes wordmarkGlow {
+      0%, 100% { filter: drop-shadow(0 0 40px #9944ff44) drop-shadow(0 0 80px #9944ff22); }
+      50% { filter: drop-shadow(0 0 60px #9944ff77) drop-shadow(0 0 120px #9944ff33); }
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: min(700px, 85vw);
+      height: 1.5px;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        #c0c0c066 15%,
+        #9944ff 50%,
+        #c0c0c066 85%,
+        transparent 100%
+      );
+      box-shadow: 0 0 12px #9944ff55;
+      margin-bottom: 20px;
+    }
+
+    /* ── MOTORSPORTS ── */
+    .motorsports {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 400;
+      font-size: clamp(14px, 3.5vw, 28px);
+      letter-spacing: clamp(8px, 3vw, 20px);
+      color: var(--silver);
+      text-transform: uppercase;
+      text-align: center;
+      text-indent: clamp(8px, 3vw, 20px);
+      margin-bottom: 28px;
+      opacity: 0.9;
+    }
+
+    /* ── COMING SOON ── */
+    .coming-soon {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: clamp(13px, 2.5vw, 20px);
+      letter-spacing: clamp(6px, 2.5vw, 14px);
+      color: var(--white);
+      text-transform: uppercase;
+      text-indent: clamp(6px, 2.5vw, 14px);
+      margin-bottom: 36px;
+      opacity: 0.85;
+    }
+
+    /* ── EMAIL FORM ── */
+    .email-form {
+      display: flex;
+      gap: 0;
+      width: min(540px, 88vw);
+      margin-bottom: 32px;
+    }
+
+    .email-input {
+      flex: 1;
+      background: transparent;
+      border: 1.5px solid var(--purple);
+      border-right: none;
+      border-radius: 4px 0 0 4px;
+      padding: 14px 18px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(10px, 2vw, 13px);
+      color: var(--white);
+      letter-spacing: 1px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .email-input::placeholder {
+      color: #555;
+      letter-spacing: 1px;
+    }
+
+    .email-input:focus {
+      border-color: #c8a8ff;
+      box-shadow: 0 0 16px #9944ff33;
+    }
+
+    .notify-btn {
+      background: var(--purple);
+      border: 1.5px solid var(--purple);
+      border-radius: 0 4px 4px 0;
+      padding: 14px 22px;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: clamp(10px, 1.8vw, 13px);
+      letter-spacing: 2px;
+      color: var(--white);
+      cursor: pointer;
+      text-transform: uppercase;
+      white-space: nowrap;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+
+    .notify-btn:hover {
+      background: #b366ff;
+      box-shadow: 0 0 20px #9944ff66;
+    }
+
+    /* ── LOCATION ── */
+    .location {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(9px, 1.8vw, 13px);
+      letter-spacing: clamp(4px, 2vw, 10px);
+      color: #555;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    /* ── GARAGE SALE LINK ── */
+    .garage-link {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(9px, 1.6vw, 12px);
+      letter-spacing: 3px;
+      color: var(--purple);
+      text-transform: uppercase;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s, gap 0.2s;
+      margin-bottom: 28px;
+    }
+
+    .garage-link:hover {
+      color: #c8a8ff;
+      gap: 12px;
+    }
+
+    /* ── SOCIAL LINKS ── */
+    .socials {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .social-link {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: #333;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .social-link:hover { color: var(--purple); }
+
+    .social-dot {
+      width: 3px; height: 3px;
+      border-radius: 50%;
+      background: #222;
+    }
+
+    /* ── SUCCESS MESSAGE ── */
+    .success-msg {
+      display: none;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: var(--purple);
+      text-align: center;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Mobile */
+    @media (max-width: 480px) {
+      .email-form { flex-direction: column; }
+      .email-input { border-right: 1.5px solid var(--purple); border-bottom: none; border-radius: 4px 4px 0 0; }
+      .notify-btn { border-radius: 0 0 4px 4px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="bg"></canvas>
+<div class="glow-layer"></div>
+
+<div class="page">
+  <div class="wordmark">WRAITH</div>
+  <div class="divider"></div>
+  <div class="motorsports">Motorsports</div>
+  <div class="coming-soon">Coming Soon</div>
+
+  <div class="email-form">
+    <input class="email-input" type="email" id="emailInput" placeholder="Enter your email for launch updates">
+    <button class="notify-btn" onclick="handleNotify()">Notify Me</button>
+  </div>
+  <div class="success-msg" id="successMsg">You're on the list. We'll be in touch. ◆</div>
+
+  <div class="location">Loveland, Ohio</div>
+
+  <a class="garage-link" href="forsale.html">Garage Sale &nbsp;→</a>
+</div>
+
+<script>
+// ── ANIMATED PARTICLE SMOKE ──
+const canvas = document.getElementById('bg');
+const ctx = canvas.getContext('2d');
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+const particles = [];
+
+function rand(a, b) { return a + Math.random() * (b - a); }
+
+function spawnParticle() {
+  particles.push({
+    x: rand(0.05, 0.95) * canvas.width,
+    y: canvas.height * rand(0.6, 1.1),
+    vx: rand(-0.2, 0.2),
+    vy: rand(-0.4, -0.9),
+    r: rand(40, 120),
+    alpha: 0,
+    maxAlpha: rand(0.03, 0.09),
+    life: 0,
+    maxLife: rand(200, 500),
+    col: `${Math.floor(rand(8,22))},${Math.floor(rand(0,8))},${Math.floor(rand(20,40))}`,
+  });
+}
+
+for (let i = 0; i < 20; i++) {
+  spawnParticle();
+  const p = particles[i];
+  p.life = rand(0, p.maxLife * 0.6);
+  p.y = rand(canvas.height * 0.2, canvas.height);
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  if (Math.random() < 0.03) spawnParticle();
+
+  for (let i = particles.length - 1; i >= 0; i--) {
+    const p = particles[i];
+    p.life++;
+    p.x += p.vx;
+    p.y += p.vy;
+    p.r += 0.08;
+
+    const prog = p.life / p.maxLife;
+    if (prog < 0.2) p.alpha = (prog / 0.2) * p.maxAlpha;
+    else if (prog > 0.65) p.alpha = ((1 - prog) / 0.35) * p.maxAlpha;
+    else p.alpha = p.maxAlpha;
+
+    if (p.life >= p.maxLife || p.y < -p.r) { particles.splice(i, 1); continue; }
+
+    const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r);
+    g.addColorStop(0, `rgba(${p.col},${p.alpha})`);
+    g.addColorStop(0.5, `rgba(${p.col},${p.alpha * 0.4})`);
+    g.addColorStop(1, `rgba(0,0,0,0)`);
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = g;
+    ctx.fill();
+  }
+  requestAnimationFrame(draw);
+}
+draw();
+
+// ── EMAIL FORM ──
+function handleNotify() {
+  const email = document.getElementById('emailInput').value.trim();
+  if (!email || !email.includes('@')) {
+    document.getElementById('emailInput').style.borderColor = '#ff4444';
+    setTimeout(() => document.getElementById('emailInput').style.borderColor = '#9944ff', 1500);
+    return;
+  }
+  document.querySelector('.email-form').style.display = 'none';
+  const msg = document.getElementById('successMsg');
+  msg.style.display = 'block';
+  // TODO: Connect to email service (Mailchimp, ConvertKit, etc.)
+  console.log('Email captured:', email);
+}
+
+document.getElementById('emailInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') handleNotify();
+});
+</script>
+</body>
+</html>
